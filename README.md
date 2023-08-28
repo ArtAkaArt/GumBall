@@ -13,3 +13,5 @@
 + клик мышки на иргровое поле запускает шар в направлении мыши
 + Esc открывает/закрывает меню
 
+## Web Build
+[Билд](https://play.unity.com/mg/other/forpublish-4) на play.unity.com.
