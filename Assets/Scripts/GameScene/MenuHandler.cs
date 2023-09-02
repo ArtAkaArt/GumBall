@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class MenuHandler : MonoBehaviour
         OpenMenu();
     }
 
+    public void ToMainMenu()
+    {
+        Time.timeScale = 1;
+        LevelManager.IsPaused = false;
+        SceneManager.LoadScene(0);
+    }
+
     public void OpenMenu()
     {
         if (options.gameObject.activeSelf)
@@ -30,5 +38,8 @@ public class MenuHandler : MonoBehaviour
         var isNextLevelAvailable = GameManager.MaxAvailableLevel > GameManager.CurrentLevel &&
                                    GameManager.CurrentLevel < GameManager.Levels.Length - 1;
         menuPanel.ShowNextLevelButton(isNextLevelAvailable);
+        var isLastLevelCleared = GameManager.MaxAvailableLevel > GameManager.CurrentLevel &&
+                                 GameManager.CurrentLevel == GameManager.Levels.Length - 1;
+        menuPanel.ShowGameOver(isLastLevelCleared);
     }
 }
