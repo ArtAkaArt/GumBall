@@ -8,7 +8,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] private EndLevelMenu menuPanel;
     [SerializeField] private OptionsMenu options;
 
-    private void Start() => LevelManager.OnSceneRestart += () => menuPanel.gameObject.SetActive(false);
+    private void Start() => LevelManager.OnSceneRestart += DeactivateMenu;
 
     public void InputHandler(InputAction.CallbackContext context)
     {
@@ -18,10 +18,11 @@ public class MenuHandler : MonoBehaviour
         OpenMenu();
     }
 
+    private void DeactivateMenu()=> menuPanel.gameObject.SetActive(false);
+
     public void ToMainMenu()
     {
-        Time.timeScale = 1;
-        LevelManager.IsPaused = false;
+        LevelManager.OnSceneRestart -= DeactivateMenu;
         SceneManager.LoadScene(0);
     }
 

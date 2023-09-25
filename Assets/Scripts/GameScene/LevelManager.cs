@@ -22,7 +22,9 @@ public class LevelManager : MonoBehaviour
             walls[i].Color = (ColorEnum)level.WallsCollors[i];
             walls[i].RenderColor();
         }
-
+        Time.timeScale = 1;
+        IsPaused = false;
+        IsShooted = false;
         foreach (var obstacle in GameManager.Levels[levelIndex].Obstacles)
             pool.InitObstacle(obstacle);
 
